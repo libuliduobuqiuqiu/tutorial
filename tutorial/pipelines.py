@@ -14,8 +14,17 @@ class TutorialPipeline(object):
 
 
 class JsonWriterPipeline(object):
-    def __init__(self):
-        self.file = open("datafiles/jobs.json", "w+")
+    def __init__(self, datafile_path):
+        self.datafile_path = datafile_path
+
+    @classmethod
+    def from_crawler(cls, crawler):
+        return cls(datafile_path = crawler.settings.get("DATAFILE_PATH"))
+    
+    def open_spider(self, spider):
+        spider_name = spider.name+".json"
+        file_path = self.datafile_path + "/" + spider_name
+        self.file = open(file_path, 'w+')
 
     def process_item(self, item, spider):
         line = json.dumps(dict(item), ensure_ascii=False)

@@ -18,3 +18,9 @@ class TutorialItem(scrapy.Item):
     categoryname = scrapy.Field()
     responsibility = scrapy.Field()
     updatetime = scrapy.Field()
+
+
+class DoubanItem(scrapy.Item):
+    username = scrapy.Field()
+    comment = scrapy.Field()
+    updatetime = scrapy.Field()

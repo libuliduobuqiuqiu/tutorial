@@ -8,6 +8,7 @@
 #     https://doc.scrapy.org/en/latest/topics/settings.html
 #     https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://doc.scrapy.org/en/latest/topics/spider-middleware.html
+from os import path
 
 BOT_NAME = 'tutorial'
 
@@ -16,6 +17,13 @@ NEWSPIDER_MODULE = 'tutorial.spiders'
 MONGO_URI = '127.0.0.1'
 MONGO_DATABASE = 'tencent'
 
+BASEFILE_PATH = path.abspath(__file__)
+BASEDIR_PATH = path.dirname(BASEFILE_PATH)
+DATAFILE_PATH = BASEDIR_PATH + "/datafiles"
+
+LOG_LEVEL = 'INFO'
+# LOG_STDOUT = False
+LOG_FILE = BASEDIR_PATH+'/log/tutorial.log'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'tutorial (+http://www.yourdomain.com)'
@@ -41,10 +49,11 @@ ROBOTSTXT_OBEY = True
 #TELNETCONSOLE_ENABLED = False
 
 # Override the default request headers:
-#DEFAULT_REQUEST_HEADERS = {
-#   'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-#   'Accept-Language': 'en',
-#}
+DEFAULT_REQUEST_HEADERS = {
+   # 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+   'Accept-Language': 'zh-cn',
+   'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36'
+}
 
 # Enable or disable spider middlewares
 # See https://doc.scrapy.org/en/latest/topics/spider-middleware.html

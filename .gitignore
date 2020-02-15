@@ -1,0 +1,11 @@
+# LogFile
+log/
+*.log
+
+# JsonFile
+datafiles/
+*.json
+
+# Python Cache File
+__pycache__/
+*.pyc

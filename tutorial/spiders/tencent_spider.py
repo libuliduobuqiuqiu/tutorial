@@ -1,5 +1,6 @@
 from scrapy import spiders
 from urllib.parse import urlencode
+import scrapy
 import time
 import json
 
@@ -13,8 +14,9 @@ class RecruitSpier(spiders.Spider):
     params = {'timestamp': timestamp, 'countryId': "", 'cityId':"", 'bgIds':"", 'productId':"", "categoryId":"",
             "parentCategoryId":"", "attrId":"", "keyword":"", "pageIndex": 1, "pageSize": 10, "language": "zh-cn",
             "area": "cn"}
-    base_url = "https://careers.tencent.com/tencentcareer/api/post/Query?" + urlencode(params)
-    start_urls = [ base_url ]
+    base_url = "https://careers.tencent.com/tencentcareer/api/post/Query?" 
+    search_url = base_url + urlencode(params)
+    start_urls = [ search_url ]
 
 
     def parse(self, response):
@@ -32,7 +34,8 @@ class RecruitSpier(spiders.Spider):
             result = {'jobname': jobname, 'country': country, 'city': city,
                     'productname': productname, 'categoryname': categoryname,
                     'responsibility': responsibility, 'updatetime': updatetime}
-            print(result)            
+            # print(result)            
+            self.logger.info("Info on: %s" % json.dumps(result, ensure_ascii=False)) 
 
             item = TutorialItem()
             item['jobname'] = jobname
@@ -43,4 +46,15 @@ class RecruitSpier(spiders.Spider):
             item['responsibility'] = responsibility
             item['updatetime'] = updatetime
             yield item        
+
+        count = jobs['Data']['Count']
+        pagenum = int(count / 10) + 1
+
+        for page in range(2, pagenum):
+            self.params['pageIndex'] = page
+            search_url = self.base_url + urlencode(self.params)
+            # print(search_url)
+            self.logger.warning("WARNING URL:%s" % search_url)
+            
+            yield scrapy.Request(search_url, callback=self.parse)
 
