@@ -36,7 +36,6 @@ class JsonWriterPipeline(object):
 
 
 class MongoPipeline(object):
-    collections_name = "tencent_jobs"
     def __init__(self, mongo_uri, mongo_db):
         self.mongo_uri = mongo_uri
         self.mongo_db = mongo_db
@@ -54,7 +53,8 @@ class MongoPipeline(object):
         self.client.close()
 
     def process_item(self, item, spider):
-        self.db[self.collections_name].insert(dict(item))
+        collections_name = spider.name+"_data"
+        self.db[collections_name].insert(dict(item))
         return item
         
         

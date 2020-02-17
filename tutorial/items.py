@@ -24,3 +24,10 @@ class DoubanItem(scrapy.Item):
     username = scrapy.Field()
     comment = scrapy.Field()
     updatetime = scrapy.Field()
+
+
+class SunItem(scrapy.Item):
+    title = scrapy.Field()
+    content = scrapy.Field()
+    detail = scrapy.Field()
+    status = scrapy.Field()

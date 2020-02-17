@@ -23,13 +23,13 @@ DATAFILE_PATH = BASEDIR_PATH + "/datafiles"
 
 LOG_LEVEL = 'INFO'
 # LOG_STDOUT = False
-LOG_FILE = BASEDIR_PATH+'/log/tutorial.log'
+# LOG_FILE = BASEDIR_PATH+'/log/tutorial.log'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'tutorial (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
@@ -47,6 +47,8 @@ ROBOTSTXT_OBEY = True
 
 # Disable Telnet Console (enabled by default)
 #TELNETCONSOLE_ENABLED = False
+TELNETCONSOLE_USERNAME = 'root'
+TELNETCONSOLE_PASSWORD = 'root'
 
 # Override the default request headers:
 DEFAULT_REQUEST_HEADERS = {
