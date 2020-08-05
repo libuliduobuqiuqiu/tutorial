@@ -57,3 +57,6 @@ class MongoPipeline(object):
         self.db[collections_name].insert(dict(item))
         return item
         
+        
+
+

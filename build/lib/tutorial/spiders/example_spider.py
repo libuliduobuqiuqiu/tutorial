@@ -1,7 +1,6 @@
 from scrapy.spiders import Spider
 from scrapy.utils.project import get_project_settings
 from scrapy.crawler import CrawlerProcess
-import scrapy
 
 
 class ExampleSpider(Spider):

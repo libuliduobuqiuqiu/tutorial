@@ -29,14 +29,5 @@ class DoubanItem(scrapy.Item):
 class SunItem(scrapy.Item):
     title = scrapy.Field()
     content = scrapy.Field()
-    pubdate = scrapy.Field()
+    detail = scrapy.Field()
     status = scrapy.Field()
-
-
-class YouyuanItem(scrapy.Item):
-    username = scrapy.Field()
-    header_url = scrapy.Field()
-    monologue = scrapy.Field()
-    summary = scrapy.Field()
-    source = scrapy.Field()
-    source_url = scrapy.Field()
